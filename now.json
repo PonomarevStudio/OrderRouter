@@ -1,0 +1,20 @@
+{
+  "name": "Order Router",
+  "scope": "PonomareVlad",
+  "builds": [
+    {
+      "src": "index.php",
+      "use": "@now/php"
+    }
+  ],
+  "routes": [
+    {
+      "src": "**",
+      "dest": "/"
+    }
+  ],
+  "regions": [
+    "cdg1"
+  ],
+  "public": "false"
+}
