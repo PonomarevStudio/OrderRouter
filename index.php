@@ -15,7 +15,7 @@ $request = 'https://maker.ifttt.com/trigger/FooksiaOrder/with/key/e90iC92t-8snog
 
 if (!$phone) exit(json_encode(['status' => false]));
 
-$request .= 'value1=' . urlencode($phone) . '&value2=' . urlencode($count || 'Не указано');
+$request .= 'value1=' . urlencode($phone) . '&value2=' . urlencode($count ? $count : 'Не указано');
 
 if ($name || $additions) $request .= '&value3=';
 if ($name) $request .= urlencode('Имя: ' . $name . '<br>');
