@@ -16,4 +16,4 @@ $message = join('<br>', array_filter([
     $data['date']
 ]));
 
-echo response(['status' => sendMail('ping@tools.mxtoolbox.com', 'Новая заявка на сайте ne-bolno.ru', $message)]);
+echo response(['status' => sendMail('dento_med_glnv@mail.ru', 'Новая заявка на сайте ne-bolno.ru', $message)]);
