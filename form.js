@@ -11,9 +11,8 @@ document.querySelectorAll('form').forEach(function (form) {
             .then(function () {
                 event.target.parentNode.classList.toggle('form-result', true);
                 event.target.querySelector('[type="submit"]').disabled = false;
-                alert('Спасибо, ваш заказ отправлен, скоро мы свяжемся с вами');
+                alert('Спасибо, скоро мы свяжемся с вами');
             });
         return false;
     };
 });
-console.log('Order forms ready ! 😉');
