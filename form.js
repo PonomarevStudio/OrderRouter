@@ -5,7 +5,9 @@ document.querySelectorAll('form').forEach(function (form) {
     }
     form.onsubmit = function (event) {
         event.target.querySelector('[type="submit"]').disabled = true;
-        fetch(event.target.action + '?' + new URLSearchParams(new FormData(event.target)).toString(), {mode: "no-cors"})
+        let parameters = new URLSearchParams(new FormData(event.target));
+        if (new URLSearchParams(window.location.search).get('debugForms')) parameters.set('debug', 'mode'); // TODO: Debug mode
+        fetch(event.target.action + '?' + parameters.toString(), {mode: "no-cors"})
             .then(function () {
                 event.target.parentNode.classList.toggle('form-result', true);
                 event.target.querySelector('[type="submit"]').disabled = false;

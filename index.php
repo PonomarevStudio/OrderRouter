@@ -25,6 +25,8 @@ function response($data = ['status' => true])
 
 header('Content-Type: application/json');
 
+if (isset($_REQUEST['debug'])) exit(response($_REQUEST));
+
 if (empty($_SERVER['HTTP_REFERER'])) exit(response(['status' => false, 'message' => 'missed Referer header']));
 
 $refererHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
