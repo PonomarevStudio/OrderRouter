@@ -26,8 +26,7 @@ function sendMail($mail, $subject = "", $message = "")
     $obj = new Smtp(array(
         "maillogin" => $_ENV['mailLogin'],
         "mailpass" => $_ENV['mailPass'],
-        "fromName" => "Уведомления от формы",
-        "from" => "Form@Ponomarev.Studio",
+        "from" => "Уведомления ne-bolno.ru",
         "host" => "ssl://smtp.gmail.com",
         "port" => 465
     ));
