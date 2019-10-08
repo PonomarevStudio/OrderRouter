@@ -17,7 +17,7 @@
   "public": false,
   "env": {
     "iftttToken": "@ifttt-token",
-    "mailLogin": "@mail-login",
-    "mailPass": "@mail-pass"
+    "mailLogin": "@form-dentomed-mail-login",
+    "mailPass": "@form-dentomed-mail-pass"
   }
 }
