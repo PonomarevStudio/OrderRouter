@@ -1,24 +1,23 @@
 <?php
 
-$phone = false;
-$count = false;
-$name = false;
-$additions = false;
+function getRequestVars($data)
+{
+    $result = array_fill_keys(array_keys($data), null);
+    foreach ($data as $item => $vars) {
+        if (!is_array($vars)) $vars = [$vars];
+        foreach ($vars as $var) if (isset($_REQUEST[$var])) {
+            $result[$item] = $_REQUEST[$var];
+            break;
+        }
+    }
+    return $result;
+}
 
-if (isset($_REQUEST['phone-3'])) $phone = $_REQUEST['phone-3'];
-if (isset($_REQUEST['Phone'])) $phone = $_REQUEST['Phone'];
-if (isset($_REQUEST['Koli4estvo'])) $count = $_REQUEST['Koli4estvo'];
-if (isset($_REQUEST['Name'])) $name = $_REQUEST['Name'];
-if (isset($_REQUEST['Dop-podarok']) && $_REQUEST['Dop-podarok'] == 'on') $additions = true;
+function getIFTTTRequest($trigger, $parameters, $token = 'e90iC92t-8snoggxBuwYnhL3KqPGnfaNUtJDlE8nuA')
+{
+    return 'https://maker.ifttt.com/trigger/' . $trigger . '/with/key/' . $token . (empty($parameters) ? '' : '?' . http_build_query($parameters));
+}
 
-$request = 'https://maker.ifttt.com/trigger/FooksiaOrder/with/key/e90iC92t-8snoggxBuwYnhL3KqPGnfaNUtJDlE8nuA?';
+var_dump($_SERVER);
 
-if (!$phone) exit(json_encode(['status' => false]));
-
-$request .= 'value1=' . urlencode($phone) . '&value2=' . urlencode($count ? $count : 'Не указано');
-
-if ($name || $additions) $request .= '&value3=';
-if ($name) $request .= urlencode('Имя: ' . $name . '<br>');
-if ($additions) $request .= urlencode('Дополнительный подарок: Да');
-
-file_get_contents($request);
+//if(isset($_SERVER['HTTP_REFERER']))
