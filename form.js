@@ -1,5 +1,5 @@
 document.querySelectorAll('form').forEach(function (form) {
-    if (!form.action) {
+    if (!form.action || form.action === location.href) {
         form.action = 'https://form.ponomarev.studio';
         form.method = 'POST';
     }
