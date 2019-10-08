@@ -7,7 +7,7 @@ $data = getRequestVars([
     'additions' => 'Dop-podarok'
 ]);
 
-if (!$data['phone']) exit(json_encode(['status' => false]));
+if (!$data['phone']) exit(response(['status' => false, 'message' => 'Phone required']));
 
 $data['count'] = empty($data['count']) ? 'Не указано' : $data['count'];
 $data['name'] = empty($data['name']) ? null : 'Имя: ' . $data['name'];
@@ -19,6 +19,4 @@ $request = getIFTTTRequest('FooksiaOrder', [
     'value3' => join('<br>', array_filter([$data['name'], $data['additions']]))
 ]);
 
-var_dump($data);
-var_dump($request);
-var_dump(file_get_contents($request));
+echo response(['status' => true, 'response' => file_get_contents($request)]);

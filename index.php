@@ -18,7 +18,19 @@ function getIFTTTRequest($trigger, $parameters, $token = 'e90iC92t-8snoggxBuwYnh
     return 'https://maker.ifttt.com/trigger/' . $trigger . '/with/key/' . $token . (empty($parameters) ? '' : '?' . http_build_query($parameters));
 }
 
-header('Content-Type: application/json');
-echo json_encode([$_SERVER, $_REQUEST, $_ENV], JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
+function response($data = ['status' => true])
+{
+    return json_encode($data, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
+}
 
-//if(isset($_SERVER['HTTP_REFERER']))
+header('Content-Type: application/json');
+
+if (empty($_SERVER['HTTP_REFERER'])) exit(response(['status' => false, 'message' => 'missed Referer header']));
+
+$refererHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
+
+$endpointFile = 'endpoints/' . $refererHost . '.php';
+
+if (!file_exists($endpointFile)) exit(response(['status' => false, 'message' => 'Endpoint for ' . $refererHost . ' not exist']));
+
+require_once $endpointFile;
