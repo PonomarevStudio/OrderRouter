@@ -17,9 +17,9 @@ $obj = new Smtp(array(
 ));
 
 $result = $obj->send(
-    'test@PonomareVlad.ru',
-    'Forms',
-    'Message Body'
+    'sys.system@mail.ru',
+    'Forms test',
+    'Forms test'
 );
 
 echo response(['status' => $result]);
