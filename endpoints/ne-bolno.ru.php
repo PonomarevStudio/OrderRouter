@@ -6,7 +6,7 @@ $data = getRequestVars([
     'date'
 ]);
 
-require_once __DIR__ . '../smtp.lib.php';
+require_once __DIR__ . '/../smtp.lib.php';
 
 $obj = new Smtp(array(
     "maillogin" => "simbas.sumrak@gmail.com",
