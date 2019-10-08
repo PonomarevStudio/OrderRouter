@@ -6,20 +6,13 @@ $data = getRequestVars([
     'date'
 ]);
 
-require_once __DIR__ . '/../smtp.lib.php';
+$data['name'] = empty($data['name']) ? null : 'Имя: ' . $data['name'];
+$data['date'] = empty($data['date']) ? null : 'Дата: ' . $data['date'];
+$data['phone'] = empty($data['phone']) ? null : 'Телефон: <a href="tel:' . $data['phone'] . '">' . $data['phone'] . '</a>';
 
-$obj = new Smtp(array(
-    "maillogin" => "simbas.sumrak@gmail.com",
-    "mailpass" => "mebptelilfoxfcxw",
-    "from" => "Vlad@Ponomarev.Studio",
-    "host" => "ssl://smtp.gmail.com",
-    "port" => 465
-));
-
-$result = $obj->send(
-    'sys.system@mail.ru',
-    'Forms test',
-    'Forms test'
-);
-
-echo response(['status' => $result]);
+echo response(['status' => sendMail('sys.system@mail.ru', 'Новая заявка на сайте ne-bolno.ru',
+    join('<br>', array_filter([
+        $data['name'],
+        $data['phone'],
+        $data['date']
+    ])))]);

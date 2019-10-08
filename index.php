@@ -18,6 +18,23 @@ function getIFTTTRequest($trigger, $parameters, $token = 'e90iC92t-8snoggxBuwYnh
     return 'https://maker.ifttt.com/trigger/' . $trigger . '/with/key/' . $token . (empty($parameters) ? '' : '?' . http_build_query($parameters));
 }
 
+function sendMail($mail, $subject = "", $message = "")
+{
+    require_once __DIR__ . '/smtp.lib.php';
+
+    $obj = new Smtp(array(
+        "maillogin" => "simbas.sumrak@gmail.com",
+        "mailpass" => "mebptelilfoxfcxw",
+        "from" => "Vlad@Ponomarev.Studio",
+        "host" => "ssl://smtp.gmail.com",
+        "port" => 465
+    ));
+
+    $result = $obj->send($mail, $subject, $message);
+
+    return $result;
+}
+
 function response($data = ['status' => true])
 {
     return json_encode($data, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
