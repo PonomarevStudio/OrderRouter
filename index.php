@@ -18,6 +18,7 @@ function getIFTTTRequest($trigger, $parameters, $token = 'e90iC92t-8snoggxBuwYnh
     return 'https://maker.ifttt.com/trigger/' . $trigger . '/with/key/' . $token . (empty($parameters) ? '' : '?' . http_build_query($parameters));
 }
 
-var_dump($_SERVER);
+header('Content-Type: application/json');
+echo json_encode([$_SERVER, $_REQUEST, $_ENV], JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
 
 //if(isset($_SERVER['HTTP_REFERER']))
