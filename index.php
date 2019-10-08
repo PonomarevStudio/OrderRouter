@@ -2,7 +2,7 @@
 
 function getRequestVars($data)
 {
-    $result = array_fill_keys(array_keys($data), null);
+    $result = []; // array_fill_keys(array_keys($data), null);
     foreach ($data as $item => $vars) {
         if (is_numeric($item)) $item = $vars;
         if (!is_array($vars)) $vars = [$vars];
