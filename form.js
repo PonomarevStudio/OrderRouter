@@ -1,6 +1,6 @@
 document.querySelectorAll('form').forEach(function (form) {
     if (!form.action) {
-        form.action = 'https://orderrouter-git-dev.ponomarevlad.now.sh'; // TODO: Replace this before production
+        form.action = 'https://' + window.location.host + '.form.ponomarev.studio'; // TODO: Replace this before production
         form.method = 'POST';
     }
     form.onsubmit = function (event) {

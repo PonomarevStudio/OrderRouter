@@ -74,7 +74,7 @@ class Smtp
                 $send_content .= "Subject: =?" . $this->settings["charset"] . "?B?" . base64_encode($subject) . "=?=\r\n";
                 $send_content .= "MIME-Version: 1.0\r\n";
                 $send_content .= "Content-type: text/html; charset=" . $this->settings["charset"] . "\r\n";
-                $send_content .= "From: =?" . $this->settings["charset"] . "?Q?" . str_replace("+", "_", str_replace("%", "=", urlencode($this->settings["from"]))) . "?= <" . $this->settings["maillogin"] . ">\r\n";
+                $send_content .= "From: =?" . $this->settings["charset"] . "?Q?" . str_replace("+", "_", str_replace("%", "=", urlencode($this->settings["fromName"]))) . "?= <" . $this->settings["from"] . ">\r\n";
                 $send_content .= "To: <" . $mail . ">\r\n";
                 $send_content .= "\r\n";
                 $send_content .= $message . "\r\n";

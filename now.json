@@ -1,6 +1,6 @@
 {
   "name": "Order Router",
-  "scope": "PonomareVlad",
+  "scope": "ponomarevlad",
   "builds": [
     {
       "src": "index.php",
@@ -14,5 +14,10 @@
   "regions": [
     "cdg1"
   ],
-  "public": false
+  "public": false,
+  "env": {
+    "iftttToken": "@ifttt-token",
+    "mailLogin": "@mail-login",
+    "mailPass": "@mail-pass"
+  }
 }

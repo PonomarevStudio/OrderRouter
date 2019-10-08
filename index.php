@@ -2,7 +2,7 @@
 
 function getRequestVars($data)
 {
-    $result = []; // array_fill_keys(array_keys($data), null);
+    $result = [];
     foreach ($data as $item => $vars) {
         if (is_numeric($item)) $item = $vars;
         if (!is_array($vars)) $vars = [$vars];
@@ -14,9 +14,9 @@ function getRequestVars($data)
     return $result;
 }
 
-function getIFTTTRequest($trigger, $parameters, $token = 'e90iC92t-8snoggxBuwYnhL3KqPGnfaNUtJDlE8nuA')
+function getIFTTTRequest($trigger, $parameters)
 {
-    return 'https://maker.ifttt.com/trigger/' . $trigger . '/with/key/' . $token . (empty($parameters) ? '' : '?' . http_build_query($parameters));
+    return 'https://maker.ifttt.com/trigger/' . $trigger . '/with/key/' . $_ENV['iftttToken'] . (empty($parameters) ? '' : '?' . http_build_query($parameters));
 }
 
 function sendMail($mail, $subject = "", $message = "")
@@ -24,9 +24,10 @@ function sendMail($mail, $subject = "", $message = "")
     require_once __DIR__ . '/smtp.lib.php';
 
     $obj = new Smtp(array(
-        "maillogin" => "simbas.sumrak@gmail.com",
-        "mailpass" => "mebptelilfoxfcxw",
-        "from" => "Vlad@Ponomarev.Studio",
+        "maillogin" => $_ENV['mailLogin'],
+        "mailpass" => $_ENV['mailPass'],
+        "fromName" => "Уведомления от формы",
+        "from" => "Form@Ponomarev.Studio",
         "host" => "ssl://smtp.gmail.com",
         "port" => 465
     ));
