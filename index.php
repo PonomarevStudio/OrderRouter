@@ -19,7 +19,7 @@ function getIFTTTRequest($trigger, $parameters)
     return 'https://maker.ifttt.com/trigger/' . $trigger . '/with/key/' . $_ENV['iftttToken'] . (empty($parameters) ? '' : '?' . http_build_query($parameters));
 }
 
-function sendMail($mail, $subject = "", $message = "")
+function old_sendMail($mail, $subject = "", $message = "")
 {
     require_once __DIR__ . '/smtp.lib.php';
 
@@ -40,6 +40,8 @@ function response($data = ['status' => true])
 {
     return json_encode($data, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
 }
+
+require_once __DIR__ . './PHPMailer/sendMail.php';
 
 header('Content-Type: application/json');
 
