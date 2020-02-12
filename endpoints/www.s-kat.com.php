@@ -1,6 +1,8 @@
 <?php
 
-//$data = getRequestVars(['Type', 'Details', 'Company', 'Name', 'Email', 'Phone', 'Comment']);
+$data = getRequestVars(['raw', 'otherRawTitle', '2', '3', '4', 'name', 'email', 'phone', 'message']);
+
+exit(response($data));
 
 /*$data['Type'] = empty($data['Type']) ? null : 'Тип: ' . $data['Type'];
 $data['Details'] = empty($data['Details']) ? null : 'Описание: ' . $data['Details'];
