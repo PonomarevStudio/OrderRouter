@@ -2,6 +2,12 @@
 
 $data = getRequestVars(['raw', 'otherRawTitle', '2', '3', '4', 'name', 'email', 'phone', 'message']);
 
+$data['rawData'] = [];
+foreach ($data['raw'] as $raw) {
+    $escaped_raw = str_replace(' ', '_', $raw);
+    if (isset($_REQUEST[$escaped_raw])) $data['rawData'][$raw] = $_REQUEST[$escaped_raw];
+}
+
 exit(response($data));
 
 /*$data['Type'] = empty($data['Type']) ? null : 'Тип: ' . $data['Type'];
