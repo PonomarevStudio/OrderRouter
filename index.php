@@ -49,7 +49,7 @@ if (empty($_SERVER['HTTP_REFERER'])) exit(response(['status' => false, 'message'
 
 $refererHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
 
-$endpointFile = 'endpoints/' . $refererHost . '.php';
+$endpointFile = __DIR__ . '/endpoints/' . $refererHost . '.php';
 
 if (!file_exists($endpointFile)) exit(response(['status' => false, 'message' => 'Endpoint for ' . $refererHost . ' not exist']));
 
