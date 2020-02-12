@@ -29,6 +29,4 @@ $data['raw'] = empty($data['raw']) ? null : 'Выберите минеральн
 
 $message = join('<br>', array_filter([$data['name'], $data['email'], $data['phone'], $data['message'], $data['raw'], $data['otherRawTitle'], $data['2'], $data['3'], $data['4'], $data['rawReadableData']]));
 
-exit($message);
-
-echo response(['status' => sendMail('simbas.sumrak@gmail.com', 'Новая заявка на сайте S-kat', $message)]);
+echo response(['status' => sendMail('sys.system@mail.ru', 'Новая заявка на сайте S-kat', $message)]);
