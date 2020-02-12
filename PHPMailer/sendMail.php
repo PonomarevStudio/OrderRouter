@@ -22,7 +22,9 @@ function sendMail($email, $subject = "", $message = "")
     $mail->Subject = $subject;
     $mail->msgHTML($message);
 //    $mail->AltBody = $message;
-    return $mail->send();
+    $result = $mail->send();
+    if (!$result) $result = $mail->ErrorInfo;
+    return $result;
     /*if (!$mail->send()) {
         echo 'Mailer Error: ' . $mail->ErrorInfo;
     } else {
