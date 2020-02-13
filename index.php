@@ -36,12 +36,32 @@ function old_sendMail($mail, $subject = "", $message = "")
     return $result;
 }
 
+function sendMail($mail, $subject = "", $message = "")
+{
+    require(__DIR__ . "/sendgrid/sendgrid-php.php");
+    $email = new \SendGrid\Mail\Mail();
+    $email->setFrom("NoReply@Ponomarev.Studio", "Платформа уведомлений Ponomarev Studio");
+    $email->setSubject($subject);
+    $email->addTo($mail);
+//    $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+    $email->addContent("text/html", $message);
+    $sendgrid = new \SendGrid(getenv('sendgrid_api_key'));
+    try {
+        $response = $sendgrid->send($email);
+//        print $response->statusCode() . "\n";
+//        print_r($response->headers());
+//        print $response->body() . "\n";
+        return $response;
+    } catch (Exception $e) {
+        error_log('Caught exception: ' . $e->getMessage() . "\n");
+        return false;
+    }
+}
+
 function response($data = ['status' => true])
 {
     return json_encode($data, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
 }
-
-require_once __DIR__ . '/PHPMailer/sendMail.php';
 
 header('Content-Type: application/json');
 

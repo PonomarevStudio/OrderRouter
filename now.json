@@ -7,7 +7,7 @@
       "use": "now-php"
     },
     {
-      "src": "*.js",
+      "src": "form.js",
       "use": "@now/static"
     }
   ],
@@ -17,6 +17,7 @@
   "public": false,
   "env": {
     "iftttToken": "@ifttt-token",
+    "sendgrid_api_key": "@sendgrid_api_key",
     "mailLogin": "@form-dentomed-mail-login",
     "mailPass": "@form-dentomed-mail-pass"
   }
