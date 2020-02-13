@@ -43,15 +43,11 @@ function sendMail($mail, $subject = "", $message = "")
     $email->setFrom("NoReply@Ponomarev.Studio", "Платформа уведомлений Ponomarev Studio");
     $email->setSubject($subject);
     $email->addTo($mail);
-//    $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
     $email->addContent("text/html", $message);
     $sendgrid = new \SendGrid(getenv('sendgrid_api_key'));
     try {
         $response = $sendgrid->send($email);
-//        print $response->statusCode() . "\n";
-//        print_r($response->headers());
-//        print $response->body() . "\n";
-        return $response;
+        return true;
     } catch (Exception $e) {
         error_log('Caught exception: ' . $e->getMessage() . "\n");
         return false;
