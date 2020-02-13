@@ -19,23 +19,6 @@ function getIFTTTRequest($trigger, $parameters)
     return 'https://maker.ifttt.com/trigger/' . $trigger . '/with/key/' . $_ENV['iftttToken'] . (empty($parameters) ? '' : '?' . http_build_query($parameters));
 }
 
-function old_sendMail($mail, $subject = "", $message = "")
-{
-    require_once __DIR__ . '/smtp.lib.php';
-
-    $obj = new Smtp(array(
-        "maillogin" => $_ENV['mailLogin'],
-        "mailpass" => $_ENV['mailPass'],
-        "from" => "Уведомления ne-bolno.ru",
-        "host" => "ssl://smtp.gmail.com",
-        "port" => 465
-    ));
-
-    $result = $obj->send($mail, $subject, $message);
-
-    return $result;
-}
-
 function sendMail($mail, $subject = "", $message = "")
 {
     require(__DIR__ . "/sendgrid/sendgrid-php.php");
