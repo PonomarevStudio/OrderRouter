@@ -21,19 +21,20 @@ function getIFTTTRequest($trigger, $parameters)
 
 function sendMail($mail, $subject = "", $message = "")
 {
-    require_once __DIR__ . '/smtp.lib.php';
-
-    $obj = new Smtp(array(
-        "maillogin" => $_ENV['mailLogin'],
-        "mailpass" => $_ENV['mailPass'],
-        "from" => "Уведомления ne-bolno.ru",
-        "host" => "ssl://smtp.gmail.com",
-        "port" => 465
-    ));
-
-    $result = $obj->send($mail, $subject, $message);
-
-    return $result;
+    require(__DIR__ . "/sendgrid/sendgrid-php.php");
+    $email = new \SendGrid\Mail\Mail();
+    $email->setFrom("NoReply@Ponomarev.Studio", "Платформа уведомлений Ponomarev Studio");
+    $email->setSubject($subject);
+    $email->addTo($mail);
+    $email->addContent("text/html", $message);
+    $sendgrid = new \SendGrid(getenv('sendgrid_api_key'));
+    try {
+        $response = $sendgrid->send($email);
+        return true;
+    } catch (Exception $e) {
+        error_log('Caught exception: ' . $e->getMessage() . "\n");
+        return false;
+    }
 }
 
 function response($data = ['status' => true])
@@ -49,7 +50,7 @@ if (empty($_SERVER['HTTP_REFERER'])) exit(response(['status' => false, 'message'
 
 $refererHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
 
-$endpointFile = 'endpoints/' . $refererHost . '.php';
+$endpointFile = __DIR__ . '/endpoints/' . $refererHost . '.php';
 
 if (!file_exists($endpointFile)) exit(response(['status' => false, 'message' => 'Endpoint for ' . $refererHost . ' not exist']));
 
