@@ -56,10 +56,11 @@ $message = join('<br>', array_filter([
     $data['3'],
     '<br>',
     $data['4'],
+    '<br>',
     $data['rawReadableData']]));
 
 $data['message'] = $message;
 
-response(['status' => sendMail('sys.system@mail.ru', 'Новая заявка на сайте S-kat', $message)]);
+response(['status' => sendMail('antonkrypton@gmail.com', 'Новая заявка на сайте S-kat', $message)]);
 
 exit(json_encode($data));
