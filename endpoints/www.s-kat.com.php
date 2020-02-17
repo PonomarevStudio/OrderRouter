@@ -42,7 +42,7 @@ if (isset($data['otherRawTitle'], $_REQUEST['otherRaw'])) $data['rawData'][$data
 foreach ($data['rawData'] as $raw => &$rawData) {
     foreach ($rawData as $item => $value) if ($value == '') $rawData[$item] = null; else $rawData[$item] = $dataItems[intval($item)] . ': <b>' . $value . '</b>';
     $rawData = join('<br>', array_filter([$rawData['1'], $rawData['2'], $rawData['3'], $rawData['4'], $rawData['5']]));
-    $data['rawReadableData'] .= '<br><b>' . $raw . '</b>:<br>' . $rawData;
+    $data['rawReadableData'] .= '<br><b>' . $raw . '</b>:<br>' . $rawData . '<br>';
 }
 
 $message = join('<br>', array_filter([
