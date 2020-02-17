@@ -59,8 +59,4 @@ $message = join('<br>', array_filter([
     '<br>',
     $data['rawReadableData']]));
 
-$data['message'] = $message;
-
-response(['status' => sendMail('antonkrypton@gmail.com', 'Новая заявка на сайте S-kat', $message)]);
-
-exit(json_encode($data));
+echo response(['status' => sendMail('antonkrypton@gmail.com', 'Новая заявка на сайте S-kat', $message)]);
