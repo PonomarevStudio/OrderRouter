@@ -58,4 +58,8 @@ $message = join('<br>', array_filter([
     $data['4'],
     $data['rawReadableData']]));
 
-echo response(['status' => sendMail('sys.system@mail.ru', 'Новая заявка на сайте S-kat', $message)]);
+$data['message'] = $message;
+
+exit(json_encode($data));
+
+//echo response(['status' => sendMail('sys.system@mail.ru', 'Новая заявка на сайте S-kat', $message)]);
