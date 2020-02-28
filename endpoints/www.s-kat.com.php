@@ -59,4 +59,4 @@ $message = join('<br>', array_filter([
     '<br>',
     $data['rawReadableData']]));
 
-echo response(['status' => sendMail('antonkrypton@gmail.com', 'Новая заявка на сайте S-kat', $message)]);
+echo response(['status' => sendMail('balakin@1mmi.ru', 'Заявка от s-kat.com', $message)]);
