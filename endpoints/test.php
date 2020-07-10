@@ -8,4 +8,4 @@ $data['phone'] = empty($data['phone']) ? null : 'Телефон: <a href="tel:' 
 
 $message = join('<br>', array_filter([$data['name'], $data['phone'], $data['date']]));
 
-echo response(['status' => sendMail('sys.system@mail.ru', 'Test', $message)]);
+echo response(['status' => sendMail('sys.system@mail.ru', 'Test', $message, true)]);

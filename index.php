@@ -19,7 +19,7 @@ function getIFTTTRequest($trigger, $parameters)
     return 'https://maker.ifttt.com/trigger/' . $trigger . '/with/key/' . $_ENV['iftttToken'] . (empty($parameters) ? '' : '?' . http_build_query($parameters));
 }
 
-function sendMail($mail, $subject = "", $message = "")
+function sendMail($mail, $subject = "", $message = "", $returnResponse = false)
 {
     require(__DIR__ . "/sendgrid/sendgrid-php.php");
     $email = new \SendGrid\Mail\Mail();
@@ -30,7 +30,7 @@ function sendMail($mail, $subject = "", $message = "")
     $sendgrid = new \SendGrid(getenv('sendgrid_api_key'));
     try {
         $response = $sendgrid->send($email);
-        return true;
+        return $returnResponse ? $response : true;
     } catch (Exception $e) {
         error_log('Caught exception: ' . $e->getMessage() . "\n");
         return false;
