@@ -26,4 +26,4 @@ document.querySelectorAll('form').forEach(function (form) {
 });
 
 window.debugForms = () => (this.currentLocationParams = new URLSearchParams(window.location.search)) &&
-    currentLocationParams.append('debugForms', '') && (location.search = currentLocationParams.toString());
+    (currentLocationParams.append('debugForms', '') || true) && (location.search = currentLocationParams.toString());
