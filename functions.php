@@ -21,6 +21,7 @@ function getIFTTTRequest($trigger, $parameters)
 
 function sendMail($mail, $subject = "", $message = "", $returnResponse = false)
 {
+    if (strlen($message) < 1) exit(response(['status' => false, 'message' => 'Message too short: ' . $message]));
     require(__DIR__ . "/sendgrid/sendgrid-php.php");
     $email = new \SendGrid\Mail\Mail();
     $email->setFrom("Notifications@Ponomarev.Studio", "Платформа уведомлений Ponomarev Studio");
