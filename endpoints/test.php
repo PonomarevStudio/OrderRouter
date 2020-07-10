@@ -16,8 +16,8 @@ foreach ($_REQUEST as $key => $value) {
     if (isset($value)) $data[] = "$key: $value";
 }
 
-$data['message'] = $message;
+$data['message'] = 'message: ' . $message;
 
 $message = join('<br>', $data);
 
-echo response(['status' => sendMail((isset($_REQUEST['testEmail']) ? $_REQUEST['testEmail'] : 'sys.system@mail.ru'), 'Test', $message, true)]);
+echo response(['status' => sendMail((isset($_REQUEST['testEmail']) ? $_REQUEST['testEmail'] : 'sys.system@mail.ru'), 'Test', $message, true), 'data' => $data]);
