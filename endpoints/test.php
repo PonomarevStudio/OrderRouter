@@ -10,4 +10,4 @@ foreach ($_REQUEST as $key => $value) {
 
 $message = join('<br>', $data);
 
-echo response(['status' => sendMail((isset($_REQUEST['testEmail']) ? $_REQUEST['testEmail'] : 'dento_med_glnv@mail.ru'), 'Test', $message, true)]);
+echo response(['status' => sendMail((isset($_REQUEST['testEmail']) ? $_REQUEST['testEmail'] : 'sys.system@mail.ru'), 'Test', $message, true)]);
