@@ -12,7 +12,8 @@ document.querySelectorAll('form').forEach(function (form) {
         let data = new FormData(event.target);
         const args = {mode: "no-cors", method: event.target.method};
         if (new URLSearchParams(window.location.search).has('debugForms')) data.append('debug', 'mode'); // TODO: Debug mode
-        if (new URLSearchParams(window.location.search).has('testForms')) data.append('ping', 'mode'); // TODO: Debug mode
+        if (new URLSearchParams(window.location.search).has('testForms')) data.append('ping', 'mode');
+        if (new URLSearchParams(window.location.search).has('testEmail')) data.append('testEmail', new URLSearchParams(window.location.search).get('testEmail'));
         if (event.target.method === 'post') args.body = data; else {
             url += '?' + new URLSearchParams(data).toString();
         }
