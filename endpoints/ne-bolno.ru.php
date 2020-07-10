@@ -1,5 +1,7 @@
 <?php
 
+/* @global $refererHost */
+
 $data = getRequestVars(['phone', 'name', 'date']);
 
 $data['name'] = empty($data['name']) ? null : 'Имя: ' . $data['name'];

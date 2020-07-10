@@ -6,15 +6,11 @@ header('Content-Type: application/json');
 
 if (isset($_REQUEST['debug'])) exit(response($_REQUEST));
 
-//if (isset($_REQUEST['ping'])) $endpointFile = __DIR__ . '/endpoints/test.php'; else {
+if (empty($_SERVER['HTTP_REFERER'])) exit(response(['status' => false, 'message' => 'missed Referer header']));
 
-    if (empty($_SERVER['HTTP_REFERER'])) exit(response(['status' => false, 'message' => 'missed Referer header']));
+$refererHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
 
-    $refererHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
-
-    $endpointFile = __DIR__ . '/endpoints/' . $refererHost . '.php';
-
-//}
+$endpointFile = __DIR__ . '/endpoints/' . $refererHost . '.php';
 
 if (!file_exists($endpointFile)) exit(response(['status' => false, 'message' => 'Endpoint for ' . $refererHost . ' not exist']));
 
