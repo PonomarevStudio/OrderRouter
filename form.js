@@ -1,3 +1,6 @@
+document.addEventListener('DOMContentLoaded', () =>
+    new URLSearchParams(window.location.search).has('debugForms') ? console.log('✅ Forms Debug Activated') : null)
+
 document.querySelectorAll('form').forEach(function (form) {
     if (!form.action || form.action === location.href) {
         form.action = 'https://form.ponomarev.studio';
@@ -21,3 +24,6 @@ document.querySelectorAll('form').forEach(function (form) {
         return false;
     };
 });
+
+window.debugForms = () => (this.currentLocationParams = new URLSearchParams(window.location.search)) &&
+    currentLocationParams.append('debugForms', '') && (location.search = currentLocationParams.toString());
