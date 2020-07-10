@@ -23,7 +23,7 @@ function sendMail($mail, $subject = "", $message = "")
 {
     require(__DIR__ . "/sendgrid/sendgrid-php.php");
     $email = new \SendGrid\Mail\Mail();
-    $email->setFrom("NoReply@Ponomarev.Studio", "Платформа уведомлений Ponomarev Studio");
+    $email->setFrom("Notifications@Ponomarev.Studio", "Платформа уведомлений Ponomarev Studio");
     $email->setSubject($subject);
     $email->addTo($mail);
     $email->addContent("text/html", $message);
@@ -51,6 +51,8 @@ if (empty($_SERVER['HTTP_REFERER'])) exit(response(['status' => false, 'message'
 $refererHost = parse_url($_SERVER['HTTP_REFERER'], PHP_URL_HOST);
 
 $endpointFile = __DIR__ . '/endpoints/' . $refererHost . '.php';
+
+if (isset($_REQUEST['test'])) $endpointFile = __DIR__ . '/endpoints/test.php';
 
 if (!file_exists($endpointFile)) exit(response(['status' => false, 'message' => 'Endpoint for ' . $refererHost . ' not exist']));
 
