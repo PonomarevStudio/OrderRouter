@@ -10,7 +10,7 @@ $data['phone'] = empty($data['phone']) ? null : 'Телефон: <a href="tel:' 
 
 $message = join('<br>', array_filter([$data['name'], $data['phone'], $data['date']]));
 
-$data = [];
+/*$data = [];
 
 foreach ($_REQUEST as $key => $value) {
     if (isset($value)) $data[] = "$key: $value";
@@ -18,6 +18,6 @@ foreach ($_REQUEST as $key => $value) {
 
 $data['message'] = 'message: ' . $message;
 
-$message = join('<br>', $data);
+$message = join('<br>', $data);*/
 
 echo response(['status' => sendMail((isset($_REQUEST['testEmail']) ? $_REQUEST['testEmail'] : 'sys.system@mail.ru'), 'Test', $message, true), 'data' => $data]);
