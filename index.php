@@ -27,7 +27,7 @@ function sendMail($mail, $subject = "", $message = "", $returnResponse = false)
     $email->setSubject($subject);
     $email->addTo($mail);
     $email->addContent("text/html", $message);
-    $sendgrid = new \SendGrid(getenv('sendgrid_api_key'));
+    $sendgrid = new \SendGrid(getenv('sendgrid_api_test_key'));
     try {
         $response = $sendgrid->send($email);
         return $returnResponse ? $response : true;
