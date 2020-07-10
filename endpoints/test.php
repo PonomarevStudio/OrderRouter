@@ -1,6 +1,6 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//error_reporting(E_ALL);
 
 $data = getRequestVars(['phone', 'name', 'date']);
 
@@ -10,14 +10,4 @@ $data['phone'] = empty($data['phone']) ? null : 'Телефон: <a href="tel:' 
 
 $message = join('<br>', array_filter([$data['name'], $data['phone'], $data['date']]));
 
-/*$data = [];
-
-foreach ($_REQUEST as $key => $value) {
-    if (isset($value)) $data[] = "$key: $value";
-}
-
-$data['message'] = 'message: ' . $message;
-
-$message = join('<br>', $data);*/
-
-echo response(['status' => sendMail((isset($_REQUEST['testEmail']) ? $_REQUEST['testEmail'] : 'sys.system@mail.ru'), 'Test', $message, true), 'data' => $data]);
+echo response(['status' => sendMail((isset($_REQUEST['testEmail']) ? $_REQUEST['testEmail'] : 'dento_med_glnv@mail.ru'), 'Test', $message, true), 'data' => $data]);
