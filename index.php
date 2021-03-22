@@ -2,6 +2,8 @@
 
 require_once 'functions.php';
 
+header("Access-Control-Allow-Origin: *");
+
 header('Content-Type: application/json');
 
 if (isset($_REQUEST['debug'])) exit(response($_REQUEST));
