@@ -19,12 +19,12 @@ function getIFTTTRequest($trigger, $parameters)
     return 'https://maker.ifttt.com/trigger/' . $trigger . '/with/key/' . $_ENV['iftttToken'] . (empty($parameters) ? '' : '?' . http_build_query($parameters));
 }
 
-function sendMail($mail, $subject = "", $message = "", $returnResponse = false)
+function sendMail($mail, $subject = "", $message = "", $returnResponse = false, $fromEmail = "Notifications@Ponomarev.Studio", $fromName = "Платформа уведомлений Ponomarev Studio")
 {
     if (strlen($message) < 1) exit(response(['status' => false, 'message' => 'Message too short: ' . $message]));
     require(__DIR__ . "/sendgrid/sendgrid-php.php");
     $email = new \SendGrid\Mail\Mail();
-    $email->setFrom("Notifications@Ponomarev.Studio", "Платформа уведомлений Ponomarev Studio");
+    $email->setFrom($fromEmail, $fromName);
     $email->setSubject($subject);
     $email->addTo($mail);
     $email->addContent("text/html", $message);
